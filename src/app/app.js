@@ -15,7 +15,8 @@
     .module('app', [
       'ngRoute',
       'ngAnimate',
-      'ngMaterial'
+      'ngMaterial',
+      'ui.bootstrap'
     ])
     .config(config)
     .run(run);

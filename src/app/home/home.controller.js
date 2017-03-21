@@ -15,38 +15,18 @@
     .module('app')
     .controller('HomeController', HomeController);
 
-  function HomeController($mdToast) {
-    var vm = this;
-    vm.toast = $mdToast;
+  function HomeController($scope, $http) {
+    var _this = this;
 
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Welcome to Angular Starter Kit!'));
-
-    this._init();
+    $scope.getProducts = function(val) {
+      return $http.get('/search?q=' + val).then(function(response){
+        console.log(response.data);
+        return response.data;
+      });
+    }
   }
 
-  /**
-   * initialize the controller
-   */
-  HomeController.prototype._init = function() {
-    this.pageReady = true;
-  };
 
-  HomeController.prototype.next = function(isValid) {
-    var vm = this;
-    // If the form is not validated, show an error message
-    if (!isValid) {
-      vm.toast.show(
-        vm.toast.simple()
-          .textContent('You must fill all the required information first.')
-          .hideDelay(0));
 
-      return;
-    }
-
-    vm.selectedIndex += 1;
-  };
-
-  HomeController.$inject = ['$mdToast'];
+  HomeController.$inject = ['$scope', '$http'];
 })();

@@ -47,7 +47,7 @@ gulp.task('clean', function(done) {
 
 gulp.task('server:dev', function() {
   browserSync.init({
-    port: 8000,
+    port: 3000,
     open: false,
     server: {
       baseDir: [config.src, config.tmp],
